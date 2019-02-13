@@ -4,10 +4,8 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        List<String> res = findAndReplacePattern(new String[]{"abc","deq","mee","aqq","dkd","ccc"},"abb");
-        for (String re : res) {
-            System.out.println(re);
-        }
+        List<List<Integer>> res = allPathsSourceTarget(new int[][]{{1,2}, {3}, {3}, {}});
+        System.out.println(res);
     }
 
     //Google Coding Example
@@ -194,4 +192,28 @@ public class Main {
         }
         return res;
     }
+    //LeetCode 797. All Paths From Source to Target
+    public static List<List<Integer>> allPathsSourceTarget(int[][] graph) {
+        return solve(graph, 0);
+    }
+    public static List<List<Integer>> solve(int[][] graph, int node) {
+        List<List<Integer>> res = new ArrayList<>();
+
+        if(node == graph.length -1){
+            List<Integer> path = new ArrayList<>();
+            path.add(node);
+            res.add(path);
+            return res;
+        }
+        for(int edge : graph[node]){
+            List<List<Integer>> allPosiblePathsOfEdge = solve(graph,edge);
+            for(List<Integer> path : allPosiblePathsOfEdge){
+                path.add(0,node);
+                res.add(path);
+            }
+        }
+        return res;
+
+    }
+
 }
