@@ -4,11 +4,10 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        int [] res = deckRevealedIncreasing(new int[]{17, 13, 11, 2, 3, 5, 7});
-        for(int i = 0 ; i < res.length; i++){
-            System.out.println(res[i]);
+        List<String> res = findAndReplacePattern(new String[]{"abc","deq","mee","aqq","dkd","ccc"},"abb");
+        for (String re : res) {
+            System.out.println(re);
         }
-
     }
 
     //Google Coding Example
@@ -162,6 +161,25 @@ public class Main {
         }
         for(int i = 0; i < res.length; i++){
             res[i] = sortedDeck.pop();
+        }
+        return res;
+    }
+    //LeetCode 890. Find and Replace Pattern
+    public static List<String> findAndReplacePattern(String[] words, String pattern) {
+        ArrayList<String> res = new ArrayList<>();
+        for(String word : words){
+            boolean match = true;
+            for(int i = 1; i<pattern.length(); i++){
+                if((word.charAt(i-1) == word.charAt(i)) !=
+                    (pattern.charAt(i-1) == pattern.charAt(i))){
+
+                    //Pattern Mismatch
+                    match = false;
+                }
+
+            }
+            if(match){res.add(word);}
+
         }
         return res;
     }
