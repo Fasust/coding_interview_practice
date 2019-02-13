@@ -169,16 +169,27 @@ public class Main {
         ArrayList<String> res = new ArrayList<>();
         for(String word : words){
             boolean match = true;
-            for(int i = 1; i<pattern.length(); i++){
-                if((word.charAt(i-1) == word.charAt(i)) !=
-                    (pattern.charAt(i-1) == pattern.charAt(i))){
+            HashMap<Character,Character> key2val = new HashMap<>();
+            HashMap<Character,Character> val2key = new HashMap<>();
+            for(int i = 0; i<pattern.length(); i++){
 
-                    //Pattern Mismatch
+                Character key = pattern.charAt(i);
+                Character val = word.charAt(i);
+
+                if(key2val.containsKey(key) && ! (key2val.get(key) == val)){
                     match = false;
+                    break;
                 }
-
+                if(val2key.containsKey(val) && ! (val2key.get(val) == key)){
+                    match = false;
+                    break;
+                }
+                key2val.put(key,val);
+                val2key.put(val,key);
             }
-            if(match){res.add(word);}
+            if(match){
+                res.add(word);
+            }
 
         }
         return res;
