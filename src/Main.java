@@ -1,8 +1,13 @@
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class Main {
 
     public static void main(String[] args) {
+        int [] res = deckRevealedIncreasing(new int[]{17, 13, 11, 2, 3, 5, 7});
+        for(int i = 0 ; i < res.length; i++){
+            System.out.println(res[i]);
+        }
 
     }
 
@@ -140,6 +145,24 @@ public class Main {
             res[i] = (int) Math.pow(A[i],2);
         }
         Arrays.sort(res);
+        return res;
+    }
+    //LeetCode 950. Reveal Cards In Increasing Order
+    public static int[] deckRevealedIncreasing(int[] deck) {
+        Stack<Integer> sortedDeck = new Stack<>();
+        int[] res = new int[deck.length];
+        Arrays.sort(deck);
+        for( int i = 0; i< deck.length; i++){
+            sortedDeck.push(deck[deck.length - i -1]);
+            if(i == deck.length -1 ){break;}
+
+            //Last becomes First
+            sortedDeck.push(sortedDeck.firstElement());
+            sortedDeck.remove(sortedDeck.firstElement());
+        }
+        for(int i = 0; i < res.length; i++){
+            res[i] = sortedDeck.pop();
+        }
         return res;
     }
 }
