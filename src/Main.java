@@ -5,7 +5,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-            System.out.print(judgeCircle("UDU"));
+            System.out.print(minAddToMakeValid(")))())"));
 
     }
 
@@ -258,6 +258,28 @@ public class Main {
             }
         }
         return (latteral == 0) && (horizontal == 0);
+    }
+    //LeetCode 921. Minimum Add to Make Parentheses Valid
+    public static int minAddToMakeValid(String S) {
+        if(S.isEmpty()){return 0;}
+
+        int totalNeeded = 0;
+        int stack = 0;
+
+        for(int i = 0; i< S.length(); i++){
+            if(S.charAt(i) == '('){
+                stack++;
+
+            }else{
+                if(stack == 0){
+                    totalNeeded++;
+                }else {
+                    stack--;
+                }
+            }
+        }
+
+        return totalNeeded + stack;
     }
 
 
