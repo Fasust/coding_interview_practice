@@ -4,8 +4,18 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        List<List<Integer>> res = allPathsSourceTarget(new int[][]{{1,2}, {3}, {3}, {}});
-        System.out.println(res);
+        int[][] res = flipAndInvertImage(new int[][] {
+                {1,1,0},
+                {1,0,1},
+                {0,0,0}
+        });
+
+        for(int[] row : res){
+            for(int index : row){
+                System.out.print(index + "\t|\t");
+            }
+            System.out.print("\n");
+        }
     }
 
     //Google Coding Example
@@ -215,5 +225,26 @@ public class Main {
         return res;
 
     }
+    //LeetCode 832. Flipping an Image
+    public static int[][] flipAndInvertImage(int[][] A) {
+        int [][] res = new int[A.length][A[0].length];
+        for(int row = 0; row < A.length; row++){
+            //Iterate Rows
+            for(int i = A[row].length -1; i >= 0; i--){
+                //Iterate indecies
+                res[row][A[row].length - i -1] = bitReverse( A[row][i]); // to lamda term intsead
+            }
+        }
+        return res;
+
+    }
+    private static int bitReverse(int bit){
+        if(bit == 1){
+            return 0;
+        }else {
+            return 1;
+        }
+    }
+
 
 }
