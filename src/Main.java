@@ -4,18 +4,9 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        int[][] res = flipAndInvertImage(new int[][] {
-                {1,1,0},
-                {1,0,1},
-                {0,0,0}
-        });
 
-        for(int[] row : res){
-            for(int index : row){
-                System.out.print(index + "\t|\t");
-            }
-            System.out.print("\n");
-        }
+            System.out.print(judgeCircle("UDU"));
+
     }
 
     //Google Coding Example
@@ -245,6 +236,30 @@ public class Main {
             return 1;
         }
     }
+    //LeetCode 657. Robot Return to Origin
+    public static boolean judgeCircle(String moves) {
+        int latteral = 0;
+        int horizontal = 0;
+        moves = moves.toUpperCase();
+        for(int i = 0; i < moves.length(); i++){
+            switch (moves.charAt(i)){
+                case 'U':
+                    latteral++;
+                    break;
+                case 'D':
+                    latteral--;
+                    break;
+                case 'R':
+                    horizontal++;
+                    break;
+                case 'L':
+                    horizontal--;
+                    break;
+            }
+        }
+        return (latteral == 0) && (horizontal == 0);
+    }
+
 
 
 }
