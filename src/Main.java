@@ -4,7 +4,11 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-            System.out.print(minAddToMakeValid(")))())"));
+        int[] res = sortArrayByParity(new int[] {1,3,7,4,2,1});
+        for(int i : res){
+            System.out.print(i + " | ");
+        }
+
     }
 
     //Google Coding Example
@@ -272,5 +276,20 @@ public class Main {
 
         return totalNeeded + stack;
     }
-
+    //LeetCode 905. Sort Array By Parity
+    public static int[] sortArrayByParity(int[] A) {
+        int[] res = new int[A.length];
+        int index_even = 0;
+        int index_odd = A.length -1;
+        for(int i : A){
+            if(i % 2 == 0){
+                //Even
+                res[index_even++] = i;
+            }else{
+                //Odd
+                res[index_odd--] = i;
+            }
+        }
+        return res;
+    }
 }
