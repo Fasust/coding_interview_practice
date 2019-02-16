@@ -4,8 +4,8 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        int[] A = new int[] {1,2,3,2,5,2};
-        System.out.print(repeatedNTimes(A));
+        int[] A = new int[] {3,2,1,6,0,5};
+        constructMaximumBinaryTree(A);
 
 
     }
@@ -301,5 +301,27 @@ public class Main {
             set.add(a);
         }
         return 0;
+    }
+    //LeetCode 654. Maximum Binary Tree
+    public static TreeNode constructMaximumBinaryTree(int[] nums) {
+        if(nums.length == 1) return new TreeNode(nums[0]);
+
+        int max = Integer.MIN_VALUE;
+        int max_index = 0;
+        for(int i = 0 ; i< nums.length ; i++){
+            if(nums[i] > max){
+                max = nums[i];
+                max_index = i;
+            }
+        }
+
+        TreeNode node = new TreeNode(max);
+
+        node.left = (max_index != 0) ?
+                constructMaximumBinaryTree(Arrays.copyOfRange(nums, 0, max_index )) : null;
+        node.right = (max_index != nums.length - 1)?
+                constructMaximumBinaryTree(Arrays.copyOfRange(nums, max_index + 1 , nums.length)) : null;
+
+        return node;
     }
 }
