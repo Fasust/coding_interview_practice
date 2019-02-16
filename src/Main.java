@@ -5,7 +5,7 @@ import java.util.regex.Matcher;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println(customSortString("cba","abcd"));
+        System.out.println(reverseWords("Let's take LeetCode contest"));
     }
 
     //Google Coding Example
@@ -355,5 +355,19 @@ public class Main {
             }
         }
         return T;
+    }
+    //LeetCode 557. Reverse Words in a String III
+    public static String reverseWords(String s) {
+        StringBuilder res = new StringBuilder();
+        String[] words = s.split(" ");
+
+        for(int i = 0; i < words.length; i++){
+            StringBuilder word = new StringBuilder(words[i]).reverse();
+            if(i != words.length -1){
+                word.append(" ");
+            }
+            res.append(word.toString());
+        }
+        return res.toString();
     }
 }
