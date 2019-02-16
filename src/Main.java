@@ -1,12 +1,14 @@
 import java.lang.reflect.Array;
 import java.util.*;
+import java.util.regex.Matcher;
 
 public class Main {
 
     public static void main(String[] args) {
-        int[] A = new int[] {3,2,1,6,0,5};
-        constructMaximumBinaryTree(A);
-
+        List<Integer> res = partitionLabels("ababcbacadefegdehijhklij");
+        for (Integer i: res) {
+            System.out.println(i);
+        }
 
     }
 
@@ -323,5 +325,20 @@ public class Main {
                 constructMaximumBinaryTree(Arrays.copyOfRange(nums, max_index + 1 , nums.length)) : null;
 
         return node;
+    }
+    //LeetCode 763. Partition Labels
+    public static List<Integer> partitionLabels(String S) {
+        List<Integer> res = new ArrayList<>();
+        StringBuilder pattern = new StringBuilder();
+
+        for(int i = 0; i < S.length(); i++){
+            pattern.append(S.charAt(i));
+
+            if(!S.substring(i + 1, S.length()).matches(".*["+ pattern.toString() +"].*")){
+                res.add(pattern.length());
+                pattern = new StringBuilder();
+            }
+        }
+        return res;
     }
 }
