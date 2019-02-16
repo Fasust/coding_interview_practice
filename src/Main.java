@@ -5,11 +5,7 @@ import java.util.regex.Matcher;
 public class Main {
 
     public static void main(String[] args) {
-        List<Integer> res = partitionLabels("ababcbacadefegdehijhklij");
-        for (Integer i: res) {
-            System.out.println(i);
-        }
-
+        System.out.println(customSortString("cba","abcd"));
     }
 
     //Google Coding Example
@@ -340,5 +336,24 @@ public class Main {
             }
         }
         return res;
+    }
+    //LeetCode 791. Custom Sort String
+    public static String customSortString(String S, String T) {
+        int og_length = T.length();
+
+        for(int i = S.length() -1 ; i >= 0; i--){
+            String pattern = String.valueOf(S.charAt(i));
+
+            if(T.contains(pattern)){
+                T = T.replaceAll(pattern,"");
+                StringBuilder workingString = new StringBuilder(T);
+                while (workingString.length() < og_length){
+                    workingString.insert(0,pattern);
+                }
+
+                T = workingString.toString();
+            }
+        }
+        return T;
     }
 }
