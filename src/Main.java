@@ -4,10 +4,9 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        int[] res = sortArrayByParity(new int[] {1,3,7,4,2,1});
-        for(int i : res){
-            System.out.print(i + " | ");
-        }
+        int[] A = new int[] {1,2,3,2,5,2};
+        System.out.print(repeatedNTimes(A));
+
 
     }
 
@@ -291,5 +290,16 @@ public class Main {
             }
         }
         return res;
+    }
+    //LeetCode 961. N-Repeated Element in Size 2N Array
+    public static int repeatedNTimes(int[] A) {
+        Set<Integer> set = new HashSet<>();
+        for(int a : A){
+            if (set.contains(a)){
+                return a;
+            }
+            set.add(a);
+        }
+        return 0;
     }
 }
