@@ -221,18 +221,11 @@ public class Main {
             //Iterate Rows
             for(int i = A[row].length -1; i >= 0; i--){
                 //Iterate indecies
-                res[row][A[row].length - i -1] = bitReverse( A[row][i]); // to lamda term intsead
+                res[row][A[row].length - i -1] = (A[row][i] == 1) ? 0: 1; // condition ? then do this : else
             }
         }
         return res;
 
-    }
-    private static int bitReverse(int bit){
-        if(bit == 1){
-            return 0;
-        }else {
-            return 1;
-        }
     }
     //LeetCode 657. Robot Return to Origin
     public static boolean judgeCircle(String moves) {
