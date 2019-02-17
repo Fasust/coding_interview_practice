@@ -1,15 +1,13 @@
-import java.lang.reflect.Array;
+import java.net.Inet4Address;
 import java.util.*;
-import java.util.regex.Matcher;
 
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println(allPossibleFBT(7).size());
-    }
 
+    }
     //Google Coding Example
-    public static String solution(String S, int K) {
+    public static String solutionForExample(String S, int K) {
         S = S.replaceAll("-","");
         S = S.toUpperCase();
         StringBuilder result = new StringBuilder();
@@ -49,7 +47,9 @@ public class Main {
         return set.size();
     }
     //LeetCode 804. Unique Morse Code Words
-    public static String[] morse = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
+    public static String[] morse =
+            {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.",
+                    "---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
     public static int uniqueMorseRepresentations(String[] words) {
         HashSet<String> set = new HashSet<>();
         for (String word : words){
@@ -427,5 +427,19 @@ public class Main {
             }
         }
         return list;
+    }
+    //LeetCode 852. Peak Index in a Mountain Array
+    public int peakIndexInMountainArray(int[] A) {
+        for(int i = 0; i < A.length; i++){
+            //No peek Found, thus the end has to be the peek
+            if(i == A.length-1) return i;
+
+            if(A[i] > A[i+1]){
+                //Following int is lower, Thus we found the peek
+                return i;
+            }
+        }
+        //Will Never be reached
+        return 0;
     }
 }
