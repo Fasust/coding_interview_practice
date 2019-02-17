@@ -5,7 +5,10 @@ import java.util.regex.Matcher;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println(hammingDistance(1,4));
+        System.out.println(minDeletionSize(new String[] {
+                "a",
+                "b",
+                "c"}));
     }
 
     //Google Coding Example
@@ -390,6 +393,20 @@ public class Main {
             }
         }
         return  res;
+    }
+    //LeetCode 944. Delete Columns to Make Sorted
+    public static int minDeletionSize(String[] A) {
+        int res = 0;
+        for(int col = 0; col< A[0].length(); col++){
+            for (int row = 0; row < A.length-1 ; row++){
+
+                if(A[row].charAt(col) > A[row+1].charAt(col)){
+                    res++;
+                    break;
+                }
+            }
+        }
+        return res;
     }
 
 }
