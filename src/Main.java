@@ -5,10 +5,7 @@ import java.util.regex.Matcher;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println(minDeletionSize(new String[] {
-                "a",
-                "b",
-                "c"}));
+        System.out.println(allPossibleFBT(7).size());
     }
 
     //Google Coding Example
@@ -408,5 +405,27 @@ public class Main {
         }
         return res;
     }
+    //LeetCode 894. All Possible Full Binary Trees
+    public static List<TreeNode> allPossibleFBT(int N) {
+        List<TreeNode> list = new ArrayList<>();
+        if (N == 1){
+            list.add(new TreeNode(0));
+            return list;
+        }
 
+        for(int i = 1; i <= N -2; i+=2){
+            List<TreeNode> leftNodes = allPossibleFBT(i);
+            List<TreeNode> rightNodes = allPossibleFBT(N - i -1);
+            for(TreeNode leftNode : leftNodes){
+                for(TreeNode rightNode: rightNodes){
+                    TreeNode root = new TreeNode(0);
+                    root.left = leftNode;
+                    root.right = rightNode;
+
+                    list.add(root);
+                }
+            }
+        }
+        return list;
+    }
 }
