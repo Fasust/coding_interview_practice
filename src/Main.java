@@ -5,7 +5,7 @@ import java.util.regex.Matcher;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println(reverseWords("Let's take LeetCode contest"));
+        System.out.println(hammingDistance(1,4));
     }
 
     //Google Coding Example
@@ -370,4 +370,26 @@ public class Main {
         }
         return res.toString();
     }
+    //LeetCode 461. Hamming Distance
+    public static int hammingDistance(int x, int y) {
+        String longBit;
+        StringBuilder shortBit;
+        int res = 0;
+
+
+        shortBit = new StringBuilder(Integer.toBinaryString((x<y)? x : y));
+        longBit = Integer.toBinaryString((x>=y)? x : y);
+
+        while (shortBit.length() < longBit.length()){
+            shortBit.insert(0,"0");
+        }
+
+        for(int i = 0; i < longBit.length() ; i++){
+            if(longBit.charAt(i) != shortBit.charAt(i)){
+                res++;
+            }
+        }
+        return  res;
+    }
+
 }
